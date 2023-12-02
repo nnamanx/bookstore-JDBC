@@ -7,15 +7,3 @@ spring:
   config:
     activate:
       on-profile: prod
-
----
-
-spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5434/bookstore-jdbc-test
-    username: postgres
-    password: 12131
-  config:
-    activate:
-      on-profile: test
