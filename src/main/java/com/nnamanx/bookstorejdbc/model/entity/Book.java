@@ -13,4 +13,6 @@ public class Book {
     Long id;
     String title;
     String author;
+    @Builder.Default
+    Boolean status = false;
 }
