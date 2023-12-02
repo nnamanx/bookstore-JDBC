@@ -3,7 +3,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: 12131
-    url: jdbc:postgresql://localhost:5434/bookstore-jdbc
+    url: jdbc:postgresql://localhost:5434/bookstore_jdbc
   config:
     activate:
       on-profile: prod
