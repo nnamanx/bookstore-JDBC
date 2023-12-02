@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: bookstore
+  profiles:
+    include:
+      - db
+      - openapi
+    active: prod
