@@ -13,6 +13,7 @@ public class Book {
     Long id;
     String title;
     String author;
+    Integer year;
     @Builder.Default
     Boolean status = false;
 }
