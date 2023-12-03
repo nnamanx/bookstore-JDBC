@@ -6,3 +6,10 @@ spring:
       - db
       - openapi
     active: prod
+
+server:
+  error:
+    include-binding-errors: always
+    include-message: always
+
+
