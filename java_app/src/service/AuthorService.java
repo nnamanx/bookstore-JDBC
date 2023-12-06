@@ -74,14 +74,13 @@ public class AuthorService {
     }
 
     public void updateAuthor(Author updatedAuthor) throws SQLException {
-
-        String sql = "UPDATE author SET first_name = ?, last_name = ?, email = ? WHERE author_id = ?";
+        String sql = "UPDATE author SET first_name = ?, last_name = ?, email = ?, status = ? WHERE author_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, updatedAuthor.getFirstName());
             statement.setString(2, updatedAuthor.getLastName());
             statement.setString(3, updatedAuthor.getEmail());
-            statement.setInt(4, updatedAuthor.getAuthorId());
-            statement.setInt(5, updatedAuthor.getStatus());
+            statement.setInt(4, updatedAuthor.getStatus());
+            statement.setInt(5, updatedAuthor.getAuthorId());
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
@@ -94,17 +93,16 @@ public class AuthorService {
 
     public void deleteAuthor(int authorId, int status) throws SQLException {
 
-        String sql = "UPDATE author SET status = ? WHERE book_id = ?";
-
+        String sql = "DELETE FROM author WHERE author_id = ? AND status = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-
+            statement.setInt(1, authorId);
             statement.setInt(2, status);
 
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
                 System.out.println("Author deleted.");
             } else {
-                System.out.println("Failed to delete author!");
+                System.out.println("Author not found or status mismatch.");
             }
         }
     }

@@ -16,25 +16,20 @@ public class BookService {
 
     //    Creating book
     public void insertBook(Book book) throws SQLException {
-
         String sql = "INSERT INTO book (title, isbn, quantity_in_stock, price, author_id) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getIsbn());
             statement.setInt(3, book.getQuantityInStock());
             statement.setDouble(4, book.getPrice());
             statement.setInt(5, book.getAuthorId());
-            statement.setInt(6, book.getStatus());
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
-
-                System.out.println("Book created successfully.");
+                System.out.println("Book inserted successfully.");
             } else {
-
-                System.out.println("Failed to create the book.");
+                System.out.println("Failed to insert book.");
             }
         }
     }
@@ -76,45 +71,39 @@ public class BookService {
     public void deleteBook(int bookId, int status) throws SQLException {
 
         String sql = "UPDATE book SET status = ? WHERE book_id = ?";
-
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(0, bookId);
-            statement.setInt(1, status);
+            statement.setInt(1, bookId);
+            statement.setInt(2, status);
 
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
                 System.out.println("Book deleted.");
             } else {
-                System.out.println("Failed to delete book!");
+                System.out.println("Book not found or status mismatch.");
             }
         }
     }
-
     //    Updating a book
+
     public void updateBook(Book updatedBook) throws SQLException {
-
-        String sql = "UPDATE book SET title = ?, isbn = ?, quantity_in_stock = ?, price = ?, author_id = ? WHERE book_id = ?";
-
+        String sql = "UPDATE book SET title = ?, isbn = ?, quantity_in_stock = ?, price = ?, author_id = ?, status = ? WHERE book_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-
             statement.setString(1, updatedBook.getTitle());
             statement.setString(2, updatedBook.getIsbn());
             statement.setInt(3, updatedBook.getQuantityInStock());
             statement.setDouble(4, updatedBook.getPrice());
             statement.setInt(5, updatedBook.getAuthorId());
-            statement.setInt(6, updatedBook.getBookId());
-            statement.setInt(7, updatedBook.getStatus());
+            statement.setInt(6, updatedBook.getStatus());
+            statement.setInt(7, updatedBook.getBookId());
 
             int rowsUpdated = statement.executeUpdate();
-
             if (rowsUpdated > 0) {
-
-                System.out.println("Book updated.");
+                System.out.println("Book updated successfully.");
             } else {
-
-                System.out.println("Failed to update book!");
+                System.out.println("Failed to update book. Book not found.");
             }
         }
     }
+
 }
 
