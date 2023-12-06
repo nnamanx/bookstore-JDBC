@@ -1,7 +1,10 @@
 package service;
 
+import model.entity.Book;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BookService {
@@ -33,5 +36,39 @@ public class BookService {
             }
         }
     }
+
+    public Book getBookById(int bookId) throws SQLException {
+
+        String sql = "SELECT * FROM book WHERE book_id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, bookId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+
+                if (resultSet.next()) {
+
+                    return mapResultSetToBook(resultSet);
+                }
+            }
+        }
+        return null;
+    }
+
+
+    private Book mapResultSetToBook(ResultSet resultSet) throws SQLException {
+
+        Book book = new Book();
+        book.setBookId(resultSet.getInt("book_id"));
+        book.setTitle(resultSet.getString("title"));
+        book.setIsbn(resultSet.getString("isbn"));
+        book.setQuantityInStock(resultSet.getInt("quantity_in_stock"));
+        book.setPrice(resultSet.getDouble("price"));
+        book.setAuthorId(resultSet.getInt("author_id"));
+        return book;
+    }
+
+
 }
 
