@@ -31,7 +31,9 @@ public class Main {
     }
 
     private static void metadataOperations(Metadata metadata) {
+
         try {
+
             System.out.println("Metadata for 'Book' Table:");
             metadata.displayTableMetadata("Book");
 
