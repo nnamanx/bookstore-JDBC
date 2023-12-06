@@ -16,13 +16,13 @@ public class dao_jdbc {
 
     //    Taking database access information from yaml file
 
-    @Value("${spring.datasource.username}")
+    @Value("postgres")
     private String username;
 
-    @Value("${spring.datasource.password}")
+    @Value("12131")
     private String password;
 
-    @Value("${spring.datasource.url}")
+    @Value("jdbc:postgresql://localhost:5434/bookstore_jdbc")
     private String url;
 
     //    Connectivity
