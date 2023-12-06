@@ -14,18 +14,19 @@ public class BookService {
         this.connection = connection;
     }
 
-//    Creating book
-    public void insertBook(String title, String isbn, int quantity, double price, int authorId) throws SQLException {
+    //    Creating book
+    public void insertBook(Book book) throws SQLException {
 
         String sql = "INSERT INTO book (title, isbn, quantity_in_stock, price, author_id) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, title);
-            statement.setString(2, isbn);
-            statement.setInt(3, quantity);
-            statement.setDouble(4, price);
-            statement.setInt(5, authorId);
+            statement.setString(1, book.getTitle());
+            statement.setString(2, book.getIsbn());
+            statement.setInt(3, book.getQuantityInStock());
+            statement.setDouble(4, book.getPrice());
+            statement.setInt(5, book.getAuthorId());
+            statement.setInt(6, book.getStatus());
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
@@ -38,7 +39,7 @@ public class BookService {
         }
     }
 
-//    Getting a book by its id
+    //    Getting a book by its id
     public Book getBookById(int bookId) throws SQLException {
 
         String sql = "SELECT * FROM book WHERE book_id = ?";
@@ -58,7 +59,7 @@ public class BookService {
         return null;
     }
 
-// Mapping result
+    // Mapping result
     private Book mapResultSetToBook(ResultSet resultSet) throws SQLException {
 
         Book book = new Book();
@@ -71,13 +72,14 @@ public class BookService {
         return book;
     }
 
-//    Deleting
-    public void deleteBook(int bookId) throws SQLException {
+    //    Deleting
+    public void deleteBook(int bookId, int status) throws SQLException {
 
         String sql = "UPDATE book SET status = ? WHERE book_id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(0, bookId);
+            statement.setInt(1, status);
 
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
@@ -88,7 +90,7 @@ public class BookService {
         }
     }
 
-//    Updating a book
+    //    Updating a book
     public void updateBook(Book updatedBook) throws SQLException {
 
         String sql = "UPDATE book SET title = ?, isbn = ?, quantity_in_stock = ?, price = ?, author_id = ? WHERE book_id = ?";
@@ -101,15 +103,18 @@ public class BookService {
             statement.setDouble(4, updatedBook.getPrice());
             statement.setInt(5, updatedBook.getAuthorId());
             statement.setInt(6, updatedBook.getBookId());
+            statement.setInt(7, updatedBook.getStatus());
 
             int rowsUpdated = statement.executeUpdate();
+
             if (rowsUpdated > 0) {
+
                 System.out.println("Book updated.");
             } else {
+
                 System.out.println("Failed to update book!");
             }
         }
     }
-
 }
 
