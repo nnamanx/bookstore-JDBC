@@ -25,6 +25,9 @@ public class Main {
                 // If any operation fails, It rollbacks the transaction ( AKA the process)
                 conn.rollback();
                 e.printStackTrace();
+
+            } finally {
+                conn.setAutoCommit(true);
             }
 
         } catch (SQLException e) {

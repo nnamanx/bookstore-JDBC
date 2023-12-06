@@ -6,6 +6,7 @@ public class Author {
     private String firstName;
     private String lastName;
     private String email;
+    private int status = 1;
 
 //    Getter & Setters
 
@@ -41,8 +42,17 @@ public class Author {
         this.email = email;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
 
 //    ToString method
+
 
     @Override
     public String toString() {
@@ -51,6 +61,7 @@ public class Author {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

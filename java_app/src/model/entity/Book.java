@@ -8,6 +8,7 @@ public class Book {
     private int quantityInStock;
     private double price;
     private int authorId;
+    private int status = 1;
 
 
 //    Getter & Setters
@@ -59,7 +60,14 @@ public class Book {
         this.authorId = authorId;
     }
 
-//    ToString method
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -69,6 +77,7 @@ public class Book {
                 ", quantityInStock=" + quantityInStock +
                 ", price=" + price +
                 ", authorId=" + authorId +
+                ", status=" + status +
                 '}';
     }
 }

@@ -6,7 +6,7 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String email;
-
+    private int status = 1;
 
 //    Getters & Setters
 
@@ -42,7 +42,15 @@ public class Customer {
         this.email = email;
     }
 
-//    ToString method
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    //    ToString method
 
     @Override
     public String toString() {
@@ -51,6 +59,7 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
