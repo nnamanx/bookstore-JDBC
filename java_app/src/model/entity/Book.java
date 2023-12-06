@@ -11,7 +11,7 @@ public class Book {
     private int status = 1;
 
 
-//    Getter & Setters
+    //    Getter & Setters
     public int getBookId() {
         return bookId;
     }
