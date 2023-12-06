@@ -72,12 +72,13 @@ public class BookService {
     }
 
 //    Deleting
-    public void deleteBook(int bookId) throws SQLException {
+    public void deleteBook(int bookId, int status) throws SQLException {
 
         String sql = "UPDATE book SET status = ? WHERE book_id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(0, bookId);
+            statement.setInt(1, status);
 
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
@@ -101,11 +102,15 @@ public class BookService {
             statement.setDouble(4, updatedBook.getPrice());
             statement.setInt(5, updatedBook.getAuthorId());
             statement.setInt(6, updatedBook.getBookId());
+            statement.setInt(7, updatedBook.getStatus());
 
             int rowsUpdated = statement.executeUpdate();
+
             if (rowsUpdated > 0) {
+
                 System.out.println("Book updated.");
             } else {
+
                 System.out.println("Failed to update book!");
             }
         }
