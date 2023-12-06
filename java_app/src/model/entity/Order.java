@@ -7,6 +7,7 @@ public class Order {
     private int bookId;
     private String orderDate;
 
+    private int status = 1;
 
 //    Getters & Setters
 
@@ -43,7 +44,15 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-//    ToString method
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    //    ToString method
 
     @Override
     public String toString() {
@@ -52,6 +61,7 @@ public class Order {
                 ", customerId=" + customerId +
                 ", bookId=" + bookId +
                 ", orderDate='" + orderDate + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

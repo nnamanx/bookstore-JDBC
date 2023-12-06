@@ -14,6 +14,7 @@ public class BookService {
         this.connection = connection;
     }
 
+//    Creating book
     public void insertBook(String title, String isbn, int quantity, double price, int authorId) throws SQLException {
 
         String sql = "INSERT INTO book (title, isbn, quantity_in_stock, price, author_id) VALUES (?, ?, ?, ?, ?)";
@@ -37,6 +38,7 @@ public class BookService {
         }
     }
 
+//    Getting a book by its id
     public Book getBookById(int bookId) throws SQLException {
 
         String sql = "SELECT * FROM book WHERE book_id = ?";
@@ -56,7 +58,7 @@ public class BookService {
         return null;
     }
 
-
+// Mapping result
     private Book mapResultSetToBook(ResultSet resultSet) throws SQLException {
 
         Book book = new Book();
@@ -69,6 +71,45 @@ public class BookService {
         return book;
     }
 
+//    Deleting
+    public void deleteBook(int bookId) throws SQLException {
+
+        String sql = "UPDATE book SET status = ? WHERE book_id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(0, bookId);
+
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("Book deleted.");
+            } else {
+                System.out.println("Failed to delete book!");
+            }
+        }
+    }
+
+//    Updating a book
+    public void updateBook(Book updatedBook) throws SQLException {
+
+        String sql = "UPDATE book SET title = ?, isbn = ?, quantity_in_stock = ?, price = ?, author_id = ? WHERE book_id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, updatedBook.getTitle());
+            statement.setString(2, updatedBook.getIsbn());
+            statement.setInt(3, updatedBook.getQuantityInStock());
+            statement.setDouble(4, updatedBook.getPrice());
+            statement.setInt(5, updatedBook.getAuthorId());
+            statement.setInt(6, updatedBook.getBookId());
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Book updated.");
+            } else {
+                System.out.println("Failed to update book!");
+            }
+        }
+    }
 
 }
 
