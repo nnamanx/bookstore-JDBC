@@ -24,8 +24,10 @@ deleteBook(int bookId, int status) - Deletes or updates the status of a book.
 getAllBooks() - Retrieves a list of all books.
 
 
-# Metadata Access: This class is responsible for providing access to essential database metadata. This includes methods for retrieving information about tables, columns, primary keys, and foreign keys. The purpose of the Metadata class is to facilitate the retrieval of critical database metadata, allowing the application to dynamically understand the structure and relationships within the database.
+# Metadata Access: 
+This class is responsible for providing access to essential database metadata. This includes methods for retrieving information about tables, columns, primary keys, and foreign keys. The purpose of the Metadata class is to facilitate the retrieval of critical database metadata, allowing the application to dynamically understand the structure and relationships within the database.
 
-# Transaction Management: The purpose is to ensure atomicity and consistency of database transactions. Include transaction-related methods used in the application.
+# Transaction Management:
+The purpose is to ensure atomicity and consistency of database transactions. Include transaction-related methods used in the application.
 
 
