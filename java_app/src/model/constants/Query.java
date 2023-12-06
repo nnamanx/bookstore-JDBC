@@ -11,5 +11,9 @@ public class Query {
     public static final String GET_BOOK_BY_ID = "SELECT * FROM book WHERE book_id = ?";
     public static final String DELETE_BOOK= "UPDATE book SET status = ? WHERE book_id = ?";
     public static final String UPDATE_BOOK = "UPDATE book SET title = ?, isbn = ?, quantity_in_stock = ?, price = ?, author_id = ?, status = ? WHERE book_id = ?";
+    public static final String INSERT_ORDER = "INSERT INTO book_order (book_id) VALUES (?)";
+    public static final String GET_ORDER_BY_ID = "SELECT * FROM book_order WHERE order_id = ?";
+    public static final String GET_ALL_ORDERS = "SELECT * FROM book_order";
+    public static final String DELETE_ORDER = "UPDATE book_order SET status = 0 WHERE order_id = ?";
 }
 
