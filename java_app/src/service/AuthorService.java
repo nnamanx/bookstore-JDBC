@@ -34,7 +34,7 @@ public class AuthorService {
                 System.out.println("Author created.");
             } else {
 
-                System.out.println("Failed to create author.");
+                System.out.println("Failed to create author!");
             }
         }
     }
@@ -74,7 +74,9 @@ public class AuthorService {
     }
 
     public void updateAuthor(Author updatedAuthor) throws SQLException {
+
         String sql = "UPDATE author SET first_name = ?, last_name = ?, email = ?, status = ? WHERE author_id = ?";
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, updatedAuthor.getFirstName());
             statement.setString(2, updatedAuthor.getLastName());
@@ -94,6 +96,7 @@ public class AuthorService {
     public void deleteAuthor(int authorId, int status) throws SQLException {
 
         String sql = "DELETE FROM author WHERE author_id = ? AND status = ?";
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, authorId);
             statement.setInt(2, status);
