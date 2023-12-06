@@ -22,9 +22,9 @@ public class AuthorServiceImpl {
         try {
             // Insert Author
             Author newAuthor = new Author();
-            newAuthor.setFirstName("John");
-            newAuthor.setLastName("Doe");
-            newAuthor.setEmail("john.doe@example.com");
+            newAuthor.setFirstName("Fyodor");
+            newAuthor.setLastName("Dostoevsky");
+            newAuthor.setEmail("Fyodor.Dostoevsky@gmail.com");
             authorService.insertAuthor(newAuthor);
 
             // Retrieve Author by ID
@@ -32,7 +32,7 @@ public class AuthorServiceImpl {
             System.out.println("Retrieved Author: " + retrievedAuthor);
 
             // Update Author
-            retrievedAuthor.setFirstName("UpdatedJohn");
+            retrievedAuthor.setFirstName("UpdatedFyodor");
             authorService.updateAuthor(retrievedAuthor);
 
             // Delete Author

@@ -38,11 +38,11 @@ public class BookServiceImpl {
             System.out.println("Retrieved Book: " + retrievedBook);
 
             // Update Book
-            retrievedBook.setTitle("Updated Java Programming");
+            retrievedBook.setTitle("Updated Crime and Punishment");
             bookService.updateBook(retrievedBook);
 
             // Delete Book
-            bookService.deleteBook(1, 0);
+            bookService.deleteBook(1, 1);
 
 //            List<Book> allBooks = bookService.getAllBooks();
 //            System.out.println("All Books: " + allBooks);
