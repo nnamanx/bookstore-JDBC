@@ -1,13 +1,10 @@
 package impl;
 
-
-import config.DatabaseConnection;
 import model.entity.Book;
 import service.BookService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 public class BookServiceImpl {
 
@@ -18,6 +15,7 @@ public class BookServiceImpl {
     }
 
     public void performBookOperations() {
+
         BookService bookService = new BookService(conn);
 
         try {
@@ -44,8 +42,7 @@ public class BookServiceImpl {
             // Delete Book
             bookService.deleteBook(1, 1);
 
-//            List<Book> allBooks = bookService.getAllBooks();
-//            System.out.println("All Books: " + allBooks);
+            // Catching errors if any
         } catch (SQLException e) {
             e.printStackTrace();
         }

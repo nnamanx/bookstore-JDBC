@@ -1,6 +1,5 @@
 package impl;
 
-import config.DatabaseConnection;
 import model.entity.Author;
 import service.AuthorService;
 
@@ -17,6 +16,7 @@ public class AuthorServiceImpl {
     }
 
     public void performAuthorOperations() {
+
         AuthorService authorService = new AuthorService(conn);
 
         try {
@@ -41,6 +41,8 @@ public class AuthorServiceImpl {
             // Retrieve All Authors
             List<Author> allAuthors = authorService.getAllAuthors();
             System.out.println("All Authors: " + allAuthors);
+
+            // Catching errors if any
         } catch (SQLException e) {
             e.printStackTrace();
         }

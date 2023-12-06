@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 
 
 public class DatabaseConnection {
+
     public Connection databaseConnection(String databaseName, String user, String pass) {
 
         Connection conn = null;
