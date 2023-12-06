@@ -1,3 +1,5 @@
+import config.DatabaseConnection;
+
 import java.sql.Connection;
 
 public class Main {

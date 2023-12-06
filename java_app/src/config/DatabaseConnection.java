@@ -1,3 +1,5 @@
+package config;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -11,7 +13,7 @@ public class DatabaseConnection {
 
             Class.forName("org.postgresql.Driver");
 
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + databaseName, user, pass);
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5434/" + databaseName, user, pass);
             if (conn != null) {
 
                 System.out.println("Connected.");
