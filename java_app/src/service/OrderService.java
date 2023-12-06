@@ -21,12 +21,15 @@ public class OrderService {
 
     // Creating a new Order
     public void insertOrder(Order order) throws SQLException {
+
         String sql = INSERT_ORDER;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
             statement.setInt(1, order.getBookId());
             statement.executeUpdate();
             System.out.println("Order inserted successfully.");
+
         } catch (SQLException e) {
             throw new SQLException("Error inserting order: " + e.getMessage());
         }

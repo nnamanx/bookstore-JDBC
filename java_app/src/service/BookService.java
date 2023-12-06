@@ -22,6 +22,7 @@ public class BookService {
         String sql = INSERT_BOOK;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getIsbn());
             statement.setInt(3, book.getQuantityInStock());
