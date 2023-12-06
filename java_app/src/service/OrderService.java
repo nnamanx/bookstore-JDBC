@@ -21,16 +21,17 @@ public class OrderService {
 
     // Creating a new Order
     public void insertOrder(Order order) throws SQLException {
-
         String sql = INSERT_ORDER;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, order.getCustomerId());
-            statement.setDate(2, order.getOrderDate());
+            statement.setInt(1, order.getBookId());
             statement.executeUpdate();
-            System.out.println("Order created successfully.");
+            System.out.println("Order inserted successfully.");
+        } catch (SQLException e) {
+            throw new SQLException("Error inserting order: " + e.getMessage());
         }
     }
+
 
     // Getting an Order by ID
     public Order getOrderById(int orderId) throws SQLException {
@@ -38,7 +39,9 @@ public class OrderService {
         String sql = GET_ORDER_BY_ID;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
             statement.setInt(1, orderId);
+
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     return mapResultSetToOrder(resultSet);
@@ -65,19 +68,6 @@ public class OrderService {
         return orders;
     }
 
-    // Updating an existing Order
-    public void updateOrder(Order order) throws SQLException {
-
-        String sql = UPDATE_ORDER;
-
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, order.getCustomerId());
-            statement.setDate(2, order.getOrderDate());
-            statement.setInt(3, order.getOrderId());
-            statement.executeUpdate();
-            System.out.println("Order updated successfully.");
-        }
-    }
 
     // Deletion
     public void deleteOrder(int orderId) throws SQLException {
@@ -98,8 +88,6 @@ public class OrderService {
         Order order = new Order();
 
         order.setOrderId(resultSet.getInt("order_id"));
-        order.setCustomerId(resultSet.getInt("customer_id"));
-        order.setOrderDate(String.valueOf(resultSet.getDate("order_date")));
         order.setStatus(resultSet.getInt("status"));
         return order;
     }

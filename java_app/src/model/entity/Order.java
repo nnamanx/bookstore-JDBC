@@ -3,10 +3,7 @@ package model.entity;
 public class Order {
 
     private int orderId;
-    private int customerId;
     private int bookId;
-    private String orderDate;
-
     private int status = 1;
 
 //    Getters & Setters
@@ -20,13 +17,6 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
 
     public int getBookId() {
         return bookId;
@@ -36,13 +26,6 @@ public class Order {
         this.bookId = bookId;
     }
 
-    public String getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(String orderDate) {
-        this.orderDate = orderDate;
-    }
 
     public int getStatus() {
         return status;
@@ -58,9 +41,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
-                ", customerId=" + customerId +
                 ", bookId=" + bookId +
-                ", orderDate='" + orderDate + '\'' +
                 ", status=" + status +
                 '}';
     }

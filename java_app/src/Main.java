@@ -1,6 +1,7 @@
 import config.DatabaseConnection;
 import impl.AuthorServiceImpl;
 import impl.BookServiceImpl;
+import impl.OrderServiceImpl;
 import meta.Metadata;
 
 import java.sql.Connection;
@@ -21,34 +22,42 @@ public class Main {
             BookServiceImpl bookService = new BookServiceImpl(conn);
             bookService.performBookOperations();
 
-            // Instantiate Metadata and perform operations
-            Metadata metadata = new Metadata(conn);
-            metadataOperations(metadata);
+            System.out.println("=============================================");
+
+//            OrderServiceImpl orderService = new OrderServiceImpl(conn);
+//            orderService.performOrderOperations();
+
+//            System.out.println("=============================================");
+
+            // UNCOMMENT THIS: Instantiate Metadata and perform operations
+//            Metadata metadata = new Metadata(conn);
+//            metadataOperations(metadata);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static void metadataOperations(Metadata metadata) {
-
-        try {
-
-            System.out.println("Metadata for 'Book' Table:");
-            metadata.displayTableMetadata("Book");
-
-            System.out.println("=============================================");
-
-            System.out.println("Column Details for 'Book' Table:");
-            metadata.displayColumnDetails("Book");
-
-            System.out.println("=============================================");
-
-            System.out.println("Key Information for 'Book' Table:");
-            metadata.displayKeyInformation("Book");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    UNCOMMENT THIS:
+//    private static void metadataOperations(Metadata metadata) {
+//
+//        try {
+//
+//            System.out.println("Metadata for 'Book' Table:");
+//            metadata.displayTableMetadata("Book");
+//
+//            System.out.println("=============================================");
+//
+//            System.out.println("Column Details for 'Book' Table:");
+//            metadata.displayColumnDetails("Book");
+//
+//            System.out.println("=============================================");
+//
+//            System.out.println("Key Information for 'Book' Table:");
+//            metadata.displayKeyInformation("Book");
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
