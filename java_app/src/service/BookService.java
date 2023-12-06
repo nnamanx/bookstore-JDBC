@@ -16,6 +16,7 @@ public class BookService {
 
     //    Creating book
     public void insertBook(Book book) throws SQLException {
+
         String sql = "INSERT INTO book (title, isbn, quantity_in_stock, price, author_id) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -27,9 +28,9 @@ public class BookService {
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("Book inserted successfully.");
+                System.out.println("Book created successfully.");
             } else {
-                System.out.println("Failed to insert book.");
+                System.out.println("Failed to create book!");
             }
         }
     }
@@ -71,6 +72,7 @@ public class BookService {
     public void deleteBook(int bookId, int status) throws SQLException {
 
         String sql = "UPDATE book SET status = ? WHERE book_id = ?";
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, bookId);
             statement.setInt(2, status);
@@ -86,7 +88,9 @@ public class BookService {
     //    Updating a book
 
     public void updateBook(Book updatedBook) throws SQLException {
+
         String sql = "UPDATE book SET title = ?, isbn = ?, quantity_in_stock = ?, price = ?, author_id = ?, status = ? WHERE book_id = ?";
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, updatedBook.getTitle());
             statement.setString(2, updatedBook.getIsbn());
@@ -100,7 +104,7 @@ public class BookService {
             if (rowsUpdated > 0) {
                 System.out.println("Book updated successfully.");
             } else {
-                System.out.println("Failed to update book. Book not found.");
+                System.out.println("Failed to update book!");
             }
         }
     }
