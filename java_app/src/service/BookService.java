@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static model.constants.Query.*;
+
 public class BookService {
     private Connection connection;
 
@@ -17,7 +19,7 @@ public class BookService {
     //    Creating book
     public void insertBook(Book book) throws SQLException {
 
-        String sql = "INSERT INTO book (title, isbn, quantity_in_stock, price, author_id) VALUES (?, ?, ?, ?, ?)";
+        String sql = INSERT_BOOK;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, book.getTitle());
@@ -38,7 +40,7 @@ public class BookService {
     //    Getting a book by its id
     public Book getBookById(int bookId) throws SQLException {
 
-        String sql = "SELECT * FROM book WHERE book_id = ?";
+        String sql = GET_BOOK_BY_ID;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -71,7 +73,7 @@ public class BookService {
     //    Deleting
     public void deleteBook(int bookId, int status) throws SQLException {
 
-        String sql = "UPDATE book SET status = ? WHERE book_id = ?";
+        String sql = DELETE_BOOK;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, bookId);
@@ -89,8 +91,7 @@ public class BookService {
 
     public void updateBook(Book updatedBook) throws SQLException {
 
-        String sql = "UPDATE book SET title = ?, isbn = ?, quantity_in_stock = ?, price = ?, author_id = ?, status = ? WHERE book_id = ?";
-
+        String sql = UPDATE_BOOK;
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, updatedBook.getTitle());
             statement.setString(2, updatedBook.getIsbn());

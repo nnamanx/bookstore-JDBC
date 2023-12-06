@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static model.constants.Query.*;
+
 public class AuthorService {
 
     private Connection connection;
@@ -20,7 +22,7 @@ public class AuthorService {
 
     public void insertAuthor(Author author) throws SQLException {
 
-        String sql = "INSERT INTO author (first_name, last_name, email) VALUES (?, ?, ?)";
+        String sql = INSERT_AUTHOR;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -41,7 +43,7 @@ public class AuthorService {
 
     public Author getAuthorById(int authorId) throws SQLException {
 
-        String sql = "SELECT * FROM author WHERE author_id = ?";
+        String sql = GET_AUTHOR_BY_ID;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -60,7 +62,7 @@ public class AuthorService {
 
         List<Author> authors = new ArrayList<>();
 
-        String sql = "SELECT * FROM author";
+        String sql = GET_ALL_AUTHORS;
 
         try (PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
@@ -75,7 +77,7 @@ public class AuthorService {
 
     public void updateAuthor(Author updatedAuthor) throws SQLException {
 
-        String sql = "UPDATE author SET first_name = ?, last_name = ?, email = ?, status = ? WHERE author_id = ?";
+        String sql = UPDATE_AUTHOR;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, updatedAuthor.getFirstName());
@@ -95,7 +97,7 @@ public class AuthorService {
 
     public void deleteAuthor(int authorId, int status) throws SQLException {
 
-        String sql = "DELETE FROM author WHERE author_id = ? AND status = ?";
+        String sql = DELETE_AUTHOR;
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, authorId);
